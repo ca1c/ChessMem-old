@@ -13,7 +13,7 @@ export default class ChessBoard extends Component {
 	render() {
 		return (
 			<div>
-				<Chessboard />
+				<Chessboard position="start"/>
 			</div>
 		);
 	}
