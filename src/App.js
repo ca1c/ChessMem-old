@@ -6,9 +6,10 @@ import ChessBoard from "./components/chessBoard.component";
 
 function App() {
   return (
-    <div>
-      <ChessBoard />
+    <div className="App">
+        <ChessBoard />
     </div>
+
   );
 }
 
