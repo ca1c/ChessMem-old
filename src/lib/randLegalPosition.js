@@ -63,6 +63,11 @@ const genRandPos = function(difficulty) {
 		
 	}
 
+	//Possiblity of chess game being over without meeting the piece requirement
+	if(chess.game_over() && currentFEN === "") {
+		currentFEN = chess.fen();
+	}
+
 	chess.reset();
 
 	regenerateDifficulties();
