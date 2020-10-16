@@ -1,12 +1,22 @@
 const Chess = require('chess.js');
 const chess = new Chess();
 
+const genRandNum = function(min, max) {
+	return Math.floor(Math.random() * (max - min) + min);
+}
+
 // Number of pieces on the board 
 const difficultyNumbers = {
-	easy: Math.floor(Math.random() * 4) + 4,
-	medium: Math.floor(Math.random() * 8) + 8,
-	hard: Math.floor(Math.random() * 16) + 16,
+	easy: genRandNum(4, 8),
+	medium: genRandNum(8, 16),
+	hard: genRandNum(16, 32),
 };
+
+const regenerateDifficulties = function () {
+	difficultyNumbers.easy = genRandNum(4, 8);
+	difficultyNumbers.medium = genRandNum(8, 16);
+	difficultyNumbers.hard = genRandNum(16, 32);
+}
 
 const getUncapturedPieces = function() {
 	const boardRanks = ['1', '2', '3', '4', '5', '6', '7', '8'];
@@ -54,6 +64,8 @@ const genRandPos = function(difficulty) {
 	}
 
 	chess.reset();
+
+	regenerateDifficulties();
 
 	console.log(pieceNum);
 
