@@ -12,6 +12,8 @@ const difficultyNumbers = {
 	hard: genRandNum(16, 32),
 };
 
+
+
 const regenerateDifficulties = function () {
 	difficultyNumbers.easy = genRandNum(4, 8);
 	difficultyNumbers.medium = genRandNum(8, 16);
