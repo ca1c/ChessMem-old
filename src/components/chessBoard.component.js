@@ -90,25 +90,3 @@ export default class ChessBoard extends Component {
 		);
 	}
 }
-
-
-
-					// <Paper className="{classes.paper}" variant="outlined" color="background">
-			  //     <Grid container spacing={2} sm={8}>
-			  //     	<Grid item xs={12}>
-			  //     		<Typography variant="h4"> Options </Typography>
-			  //     	</Grid>
-			  //       <Grid item xs={4}>
-			  //         <Button variant="outlined" size="small" onClick={this.handleClickEasy}>Easy</Button>
-			  //       </Grid>
-			  //       <Grid item xs={4}>
-			  //         <Button variant="outlined" size="small" onClick={this.handleClickMedium}>Medium</Button>
-			  //       </Grid>
-			  //       <Grid item xs={4}>
-			  //         <Button variant="outlined" size="small" onClick={this.handleClickHard}>Hard</Button>
-			  //       </Grid>
-		   //      	<Grid item xs={4}>
-		   //    			<Button variant="outlined" size="small" onClick={this.handleClickReset}>Reset</Button>
-		   //    		</Grid>
-			  //     </Grid>
-					// </Paper>
