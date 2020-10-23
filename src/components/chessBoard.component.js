@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import Chessboard from 'chessboardjsx';
 import { Grid, Container, Button, Typography, Card, Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import { withStyles } from '@material-ui/core/styles';
 
 import theme from '../theme';
 
@@ -9,18 +13,8 @@ import genRandPos from '../lib/randLegalPosition.js';
 
 /* Styles */
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-	},
-	paper: {
-		padding: theme.spacing(1),
-		textAlign: 'center',
-		color: theme.palette.text.secondary,
-	},
-}));
-
 export default class ChessBoard extends Component {
+
 	constructor(props) {
 		super(props);
 		this.handleClickEasy = this.handleClickEasy.bind(this);
@@ -66,40 +60,55 @@ export default class ChessBoard extends Component {
 		}
 	}
 
-
 	render() {
+
 		return (
 			<div>
-					<Grid 
-						container 
-						justify="center"
-					>
-						<Chessboard 
-							position={this.state.currentPosition}
-							lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
-	  						darkSquareStyle={{ backgroundColor: "#494d54" }}
-	  					/>
-						<Paper className="{classes.paper}" variant="outlined" color="background">
-				      <Grid container spacing={2} sm={8}>
-				      	<Grid item xs={12}>
-				      		<Typography variant="h4"> Options </Typography>
-				      	</Grid>
-				        <Grid item xs={4}>
-				          <Button variant="outlined" size="small" onClick={this.handleClickEasy}>Easy</Button>
-				        </Grid>
-				        <Grid item xs={4}>
-				          <Button variant="outlined" size="small" onClick={this.handleClickMedium}>Medium</Button>
-				        </Grid>
-				        <Grid item xs={4}>
-				          <Button variant="outlined" size="small" onClick={this.handleClickHard}>Hard</Button>
-				        </Grid>
-			        	<Grid item xs={4}>
-			      			<Button variant="outlined" size="small" onClick={this.handleClickReset}>Reset</Button>
-			      		</Grid>
-				      </Grid>
-						</Paper>
-					</Grid>
+				<Grid 
+					container 
+					justify="center"
+				>
+					<Chessboard 
+						position={this.state.currentPosition}
+						lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
+  						darkSquareStyle={{ backgroundColor: "#494d54" }}
+  					/>
+					<List component="nav" ria-label="mailbox folders">
+					  <ListItem button>
+					    <ListItemText primary="Easy" onClick={this.handleClickEasy}/>
+					  </ListItem>
+					  <Divider />
+					  <ListItem button divider>
+					    <ListItemText primary="Medium" onClick={this.handleClickMedium}/>
+					  </ListItem>
+					  <ListItem button>
+					    <ListItemText primary="Hard" onClick={this.handleClickHard}/>
+					  </ListItem>
+					</List>
+				</Grid>
 			</div>
 		);
 	}
 }
+
+
+
+					// <Paper className="{classes.paper}" variant="outlined" color="background">
+			  //     <Grid container spacing={2} sm={8}>
+			  //     	<Grid item xs={12}>
+			  //     		<Typography variant="h4"> Options </Typography>
+			  //     	</Grid>
+			  //       <Grid item xs={4}>
+			  //         <Button variant="outlined" size="small" onClick={this.handleClickEasy}>Easy</Button>
+			  //       </Grid>
+			  //       <Grid item xs={4}>
+			  //         <Button variant="outlined" size="small" onClick={this.handleClickMedium}>Medium</Button>
+			  //       </Grid>
+			  //       <Grid item xs={4}>
+			  //         <Button variant="outlined" size="small" onClick={this.handleClickHard}>Hard</Button>
+			  //       </Grid>
+		   //      	<Grid item xs={4}>
+		   //    			<Button variant="outlined" size="small" onClick={this.handleClickReset}>Reset</Button>
+		   //    		</Grid>
+			  //     </Grid>
+					// </Paper>
