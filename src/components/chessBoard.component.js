@@ -12,18 +12,15 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { withStyles } from '@material-ui/core/styles';
 
 // theme
-
 import theme from '../theme';
 
 // Utility javascript
-
 import genRandPos from '../lib/randLegalPosition.js';
 
 // Custom components
+import Error from './error.component';
 
-function Alert(props) {
-	return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+
 
 const styles = theme => ({
   mainPadding: {    
@@ -132,6 +129,7 @@ class ChessBoard extends Component {
 			currentPosition = "start";
 			error = this.state.error;
 			snackbarOpen = false;
+			this.closeError();
 		} 
 
 		if(this.state.currentPosition === "start"){
@@ -192,11 +190,7 @@ class ChessBoard extends Component {
 					  </ListItem>
 					</List>
 				</Grid>
-				<Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.closeError}>
-					<Alert onClose={this.closeError} severity="warning">
-						{this.state.error}
-					</Alert>
-				</Snackbar>
+				<Error open={this.state.snackbarOpen} close={this.closeError} error={this.state.error}/>
 			</div>
 		);
 	}
