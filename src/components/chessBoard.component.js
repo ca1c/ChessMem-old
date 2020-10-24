@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import Chessboard from 'chessboardjsx';
-import { Grid, Container, Button, Typography, Card, Paper } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -21,16 +21,17 @@ import genRandPos from '../lib/randLegalPosition.js';
 
 // Custom components
 
-
-
-
 function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+const styles = theme => ({
+  mainPadding: {    
+    padding: '30px',   
+  },
+});
 
-
-export default class ChessBoard extends Component {
+class ChessBoard extends Component {
 
 	constructor(props) {
 		super(props);
@@ -161,9 +162,10 @@ export default class ChessBoard extends Component {
 	}
 
 	render() {
+		const {classes} = this.props;
 
 		return (
-			<div>
+			<div className={classes.mainPadding}>
 				<Grid 
 					container 
 					justify="center"
@@ -199,3 +201,5 @@ export default class ChessBoard extends Component {
 		);
 	}
 }
+
+export default withStyles(styles)(ChessBoard);
