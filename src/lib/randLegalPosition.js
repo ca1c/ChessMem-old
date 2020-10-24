@@ -1,9 +1,11 @@
 const Chess = require('chess.js');
-const chess = new Chess();
+// console.log(Chess.Chess);
+const chess = Chess();
 
 const genRandNum = function(min, max) {
 	return Math.floor(Math.random() * (max - min) + min);
 }
+
 
 // Number of pieces on the board 
 const difficultyNumbers = {

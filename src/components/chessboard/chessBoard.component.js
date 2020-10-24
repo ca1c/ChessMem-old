@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 
 // Utility javascript
-import genRandPos from '../lib/randLegalPosition.js';
+import genRandPos from './../../lib/randLegalPosition.js';
 
 // Custom components
 
