@@ -1,3 +1,5 @@
+// modules
+
 import React, { Component } from 'react';
 import Chessboard from 'chessboardjsx';
 import { Grid, Container, Button, Typography, Card, Paper } from '@material-ui/core';
@@ -5,13 +7,28 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import { withStyles } from '@material-ui/core/styles';
+
+// theme
 
 import theme from '../theme';
 
+// Utility javascript
+
 import genRandPos from '../lib/randLegalPosition.js';
 
-/* Styles */
+// Custom components
+
+
+
+
+function Alert(props) {
+	return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+
 
 export default class ChessBoard extends Component {
 
@@ -21,43 +38,118 @@ export default class ChessBoard extends Component {
 		this.handleClickMedium = this.handleClickMedium.bind(this);
 		this.handleClickHard = this.handleClickHard.bind(this);
 		this.handleClickReset = this.handleClickReset.bind(this);
+		this.closeError = this.closeError.bind(this);
 
 		this.state = {
 			currentPosition: "start",
+			error: "",
+			snackbarOpen: false,
 		};
 	}
 
 	handleClickEasy() {
+		let currentPosition;
+		let error;
+		let snackbarOpen;
 		if(this.state.currentPosition === "start") {
-			this.setState({
-				currentPosition: genRandPos(0),
-			})
+			currentPosition = genRandPos(0);
+			error = this.state.error;
+			snackbarOpen = this.state.snackbarOpen;
+		} 
+
+		if(this.state.currentPosition !== "start"){
+			currentPosition = this.state.currentPosition;
+			error = "Reset position to generate new position.";
+			snackbarOpen = true;
 		}
+
+		this.setState({
+			currentPosition: currentPosition,
+			error: error,
+			snackbarOpen: snackbarOpen,
+		})
 	}
 
 	handleClickMedium() {
+		let currentPosition;
+		let error;
+		let snackbarOpen;
 		if(this.state.currentPosition === "start") {
-			this.setState({
-				currentPosition: genRandPos(1),
-			})
+			currentPosition = genRandPos(1);
+			error = this.state.error;
+			snackbarOpen = this.state.snackbarOpen;
+		} 
+
+		if(this.state.currentPosition !== "start"){
+			currentPosition = this.state.currentPosition;
+			error = "Reset position to generate new position.";
+			snackbarOpen = true;
 		}
+
+		this.setState({
+			currentPosition: currentPosition,
+			error: error,
+			snackbarOpen: snackbarOpen,
+		})
 	}
 
 	handleClickHard() {
+		let currentPosition;
+		let error;
+		let snackbarOpen;
 		if(this.state.currentPosition === "start") {
-			this.setState({
-				currentPosition: genRandPos(2),
-			})
+			currentPosition = genRandPos(2);
+			error = this.state.error;
+			snackbarOpen = this.state.snackbarOpen;
+		} 
+
+		if(this.state.currentPosition !== "start"){
+			currentPosition = this.state.currentPosition;
+			error = "Reset position to generate new position.";
+			snackbarOpen = true;
 		}
+
+		this.setState({
+			currentPosition: currentPosition,
+			error: error,
+			snackbarOpen: snackbarOpen,
+		})
 	}
 
 	handleClickReset() {
-		console.log(this.state.currentPosition);
+		let currentPosition;
+		let error;
+		let snackbarOpen;
 		if(this.state.currentPosition !== "start") {
-			this.setState({
-				currentPosition: "start",
-			})
+			currentPosition = "start";
+			error = this.state.error;
+			snackbarOpen = this.state.snackbarOpen;
+		} 
+
+		if(this.state.currentPosition === "start"){
+			currentPosition = this.state.currentPosition;
+			error = "Position has already been reset.";
+			snackbarOpen = true;
 		}
+
+		this.setState({
+			currentPosition: currentPosition,
+			error: error,
+			snackbarOpen: snackbarOpen,
+		})
+	}
+
+	// Snackbar, unfortunately have not found a way to make this a separate component
+	closeError(event, reason) {
+		if(reason === 'clickaway') {
+			return;
+		}
+
+		this.setState({
+			currentPosition: this.state.currentPosition,
+			error: this.state.error,
+			snackbarOpen: false,
+		});
 	}
 
 	render() {
@@ -84,8 +176,17 @@ export default class ChessBoard extends Component {
 					  <ListItem button>
 					    <ListItemText primary="Hard" onClick={this.handleClickHard}/>
 					  </ListItem>
+					  <Divider />
+					  <ListItem button>
+					  	<ListItemText primary="Reset" onClick={this.handleClickReset}/>
+					  </ListItem>
 					</List>
 				</Grid>
+				<Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.closeError}>
+					<Alert onClose={this.closeError} severtiy="warning">
+						{this.state.error}
+					</Alert>
+				</Snackbar>
 			</div>
 		);
 	}
