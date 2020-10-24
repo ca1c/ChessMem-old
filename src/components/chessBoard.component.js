@@ -48,13 +48,14 @@ export default class ChessBoard extends Component {
 	}
 
 	handleClickEasy() {
+		console.log('ranEasy');
 		let currentPosition;
 		let error;
 		let snackbarOpen;
 		if(this.state.currentPosition === "start") {
 			currentPosition = genRandPos(0);
 			error = this.state.error;
-			snackbarOpen = this.state.snackbarOpen;
+			snackbarOpen = false;
 		} 
 
 		if(this.state.currentPosition !== "start"){
@@ -68,16 +69,18 @@ export default class ChessBoard extends Component {
 			error: error,
 			snackbarOpen: snackbarOpen,
 		})
+		console.log(this.state.snackbarOpen);
 	}
 
 	handleClickMedium() {
+		console.log('ranMedium');
 		let currentPosition;
 		let error;
 		let snackbarOpen;
 		if(this.state.currentPosition === "start") {
 			currentPosition = genRandPos(1);
 			error = this.state.error;
-			snackbarOpen = this.state.snackbarOpen;
+			snackbarOpen = false;
 		} 
 
 		if(this.state.currentPosition !== "start"){
@@ -91,16 +94,18 @@ export default class ChessBoard extends Component {
 			error: error,
 			snackbarOpen: snackbarOpen,
 		})
+		console.log(this.state.snackbarOpen);
 	}
 
 	handleClickHard() {
+		console.log('ranHard');
 		let currentPosition;
 		let error;
 		let snackbarOpen;
 		if(this.state.currentPosition === "start") {
 			currentPosition = genRandPos(2);
 			error = this.state.error;
-			snackbarOpen = this.state.snackbarOpen;
+			snackbarOpen = false;
 		} 
 
 		if(this.state.currentPosition !== "start"){
@@ -114,16 +119,18 @@ export default class ChessBoard extends Component {
 			error: error,
 			snackbarOpen: snackbarOpen,
 		})
+		console.log(this.state.snackbarOpen);
 	}
 
 	handleClickReset() {
+		console.log('ranReset');
 		let currentPosition;
 		let error;
 		let snackbarOpen;
 		if(this.state.currentPosition !== "start") {
 			currentPosition = "start";
 			error = this.state.error;
-			snackbarOpen = this.state.snackbarOpen;
+			snackbarOpen = false;
 		} 
 
 		if(this.state.currentPosition === "start"){
@@ -137,6 +144,7 @@ export default class ChessBoard extends Component {
 			error: error,
 			snackbarOpen: snackbarOpen,
 		})
+		console.log(this.state.snackbarOpen);
 	}
 
 	// Snackbar, unfortunately have not found a way to make this a separate component
@@ -183,7 +191,7 @@ export default class ChessBoard extends Component {
 					</List>
 				</Grid>
 				<Snackbar open={this.state.snackbarOpen} autoHideDuration={6000} onClose={this.closeError}>
-					<Alert onClose={this.closeError} severtiy="warning">
+					<Alert onClose={this.closeError} severity="warning">
 						{this.state.error}
 					</Alert>
 				</Snackbar>
