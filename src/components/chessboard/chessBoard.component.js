@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import Chessboard from 'chessboardjsx';
+import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,6 +19,15 @@ const styles = theme => ({
   mainPadding: {    
     padding: '30px',   
   },
+  options: {
+  	maxWidth: '300px',
+  	display: 'flex',
+	flexDirection: 'row',
+	padding: 0,
+  },
+  menuButton: {
+  	textAlign: "center"
+  }
 });
 
 class ChessBoard extends Component {
@@ -50,28 +60,28 @@ class ChessBoard extends Component {
 		return (
 			<div className={classes.mainPadding}>
 				<Grid 
-					container 
-					justify="center"
+					align="center"
 				>
 					<Chessboard 
 						position={this.state.currentPosition}
 						sparePieces={true}
 						lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
-  					darkSquareStyle={{ backgroundColor: "#494d54" }}
+  						darkSquareStyle={{ backgroundColor: "#494d54" }}
   					/>
-					<List component="nav" ria-label="mailbox folders">
+  					<Container size="xs">
+					<List component="nav" ria-label="mailbox folders" className={classes.options}>
 					  <ListItem button>
-					    <ListItemText primary="Easy" onClick={this.handleDifficultyClick.bind(this, 0)}/>
-					  </ListItem>
-					  <Divider />
-					  <ListItem button divider>
-					    <ListItemText primary="Medium" onClick={this.handleDifficultyClick.bind(this, 1)}/>
+					    <ListItemText primary="Easy" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 0)}/>
 					  </ListItem>
 					  <ListItem button>
-					    <ListItemText primary="Hard" onClick={this.handleDifficultyClick.bind(this, 2)}/>
+					    <ListItemText primary="Medium" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 1)}/>
+					  </ListItem>
+					  <ListItem button>
+					    <ListItemText primary="Hard" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 2)}/>
 					  </ListItem>
 					  <Divider />
 					</List>
+					</Container>
 				</Grid>
 			</div>
 		);

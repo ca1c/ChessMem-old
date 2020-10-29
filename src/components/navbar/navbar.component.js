@@ -10,16 +10,18 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = theme => ({
 	root: {
-		width: '100%'
+		flexGrow: 1
 	},
-	flex: {
-		flex: 1
+	title: {
+		flexGrow: 1
 	},
-	menuButton: {
-		marginLeft: -12,
-		marginRight: 20
-	}
+	appBar: {
+  		background: 'transparent',
+  		borderBottom: '3px solid #00e676',
+  		boxShadow: 'none'
+  	}
 })
+
 
 class Navbar extends Component {
 	constructor(props) {
@@ -30,18 +32,25 @@ class Navbar extends Component {
 		const {classes} = this.props;
 
 		return(
-			<AppBar position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.flex} variant="h6">
-            ChessMem
-          </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
-        </Toolbar>
-    	</AppBar>
+		<div>
+			<AppBar position="static" className={classes.appBar} color="textSecondary">
+		        <Toolbar>
+		          <Typography className={classes.title} variant="h5" color="textSecondary">
+		            ChessMem
+		          </Typography>
+		          <Button color="inherit">
+			          <Typography variant="p" color="textSecondary" align="left">
+			            Login
+			          </Typography>
+		          </Button>
+		          <Button color="inherit">
+			      	  <Typography variant="p" color="textSecondary">
+			            Register
+			          </Typography>
+			      </Button>
+		        </Toolbar>
+	    	</AppBar>
+    	</div>
     )
 	}
 }
