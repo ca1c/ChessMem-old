@@ -16,8 +16,8 @@ import genRandPos from './../../lib/randLegalPosition.js';
 // Custom components
 
 const styles = theme => ({
-  mainPadding: {    
-    padding: '30px',   
+  mainPadding: {
+    padding: '30px',
   },
   options: {
   	maxWidth: '300px',
@@ -59,28 +59,28 @@ class ChessBoard extends Component {
 
 		return (
 			<div className={classes.mainPadding}>
-				<Grid 
+				<Grid
 					align="center"
 				>
-					<Chessboard 
+					<Chessboard
 						position={this.state.currentPosition}
 						sparePieces={true}
 						lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
   						darkSquareStyle={{ backgroundColor: "#494d54" }}
   					/>
-  					<Container size="xs">
-					<List component="nav" ria-label="mailbox folders" className={classes.options}>
-					  <ListItem button>
-					    <ListItemText primary="Easy" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 0)}/>
-					  </ListItem>
-					  <ListItem button>
-					    <ListItemText primary="Medium" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 1)}/>
-					  </ListItem>
-					  <ListItem button>
-					    <ListItemText primary="Hard" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 2)}/>
-					  </ListItem>
-					  <Divider />
-					</List>
+  				<Container size="xs">
+  					<List component="nav" ria-label="mailbox folders" className={classes.options}>
+  					  <ListItem button>
+  					    <ListItemText primary="Easy" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 0)}/>
+  					  </ListItem>
+  					  <ListItem button>
+  					    <ListItemText primary="Medium" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 1)}/>
+  					  </ListItem>
+  					  <ListItem button>
+  					    <ListItemText primary="Hard" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 2)}/>
+  					  </ListItem>
+  					  <Divider />
+  					</List>
 					</Container>
 				</Grid>
 			</div>

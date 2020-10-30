@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Container from '@material-ui/core/Container';
 
 const styles = theme => ({
 	root: {
@@ -32,8 +33,9 @@ class Navbar extends Component {
 		const {classes} = this.props;
 
 		return(
-		<div>
-			<AppBar position="static" className={classes.appBar} color="textSecondary">
+			<div>
+				<Container size="xs">
+					<AppBar position="static" className={classes.appBar} color="textSecondary">
 		        <Toolbar>
 		          <Typography className={classes.title} variant="h5" color="textSecondary">
 		            ChessMem
@@ -47,9 +49,10 @@ class Navbar extends Component {
 			      	  <Typography variant="p" color="textSecondary">
 			            Register
 			          </Typography>
-			      </Button>
+			      	</Button>
 		        </Toolbar>
-	    	</AppBar>
+		    	</AppBar>
+				</Container>
     	</div>
     )
 	}
