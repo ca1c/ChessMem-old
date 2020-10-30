@@ -1,30 +1,19 @@
-export default class Timer {
-  // timer will take an object with hours, minutes, and seconds
-  constructor(time) {
-    this.seconds = time.seconds * 1000;
-    this.minutes = time.minutes * 60000;
-    this.hours = time.hours * 600000;
-  }
+const { DateTime } = require('luxon');
 
-  get time() {
-    return {
-      seconds: this.seconds,
-      minutes: this.minutes,
-      hours: this.hours,
+function timer(seconds) {
+  let currentTime = DateTime.local();
+  let endSeconds = currentTime.second + seconds;
+  // When the seconds hit 60 they reset to 0
+  let overFiftyNine = endSeconds > 59 ? endSeconds -= 60 : endSeconds = endSeconds;
+
+  let tick = setInterval(() => {
+    endSeconds -= 1;
+    console.log('00:00:' + endSeconds);
+
+    if(endSeconds === currentTime.second) {
+      clearInterval(tick);
     }
-  }
-
-  set time(time) {
-    this.seconds = time.seconds * 1000;
-    this.minutes = time.minutes * 60000;
-    this.hours = time.hours * 600000;
-  }
-
-  timerWrapper() {
-
-  }
-
-  timerTick() {
-    
-  }
+  }, 1000)
 }
+
+timer(6);
