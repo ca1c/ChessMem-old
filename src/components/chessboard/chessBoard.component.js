@@ -14,6 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import genRandPos from './../../lib/randLegalPosition.js';
 
 // Custom components
+import Timer from "./../timer/timer.component";
 
 const styles = theme => ({
   mainPadding: {
@@ -27,6 +28,9 @@ const styles = theme => ({
   },
   menuButton: {
   	textAlign: "center"
+  },
+  timer: {
+      maxWidth: '610px',
   }
 });
 
@@ -45,6 +49,7 @@ class ChessBoard extends Component {
 		let currentPosition;
 		if(this.state.currentPosition === 'start') {
 			currentPosition = genRandPos(difficulty);
+      window.timerComp.startTimer();
 		} else {
 			currentPosition = "start";
 		}
@@ -83,6 +88,9 @@ class ChessBoard extends Component {
   					</List>
 					</Container>
 				</Grid>
+        <Container size="xs" className={classes.timer}>
+          <Timer startingSeconds={10}/>
+        </Container>
 			</div>
 		);
 	}

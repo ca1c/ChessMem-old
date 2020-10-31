@@ -34,3 +34,10 @@
     transform: rotate(360deg);
   }
 }
+
+.timerComp {
+  background-color: #474747;
+  padding: 9px;
+  border-radius: 3px;
+  float: right;
+}
