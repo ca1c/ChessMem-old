@@ -1,19 +1,30 @@
 const { DateTime } = require('luxon');
 
-function timer(seconds) {
-  let currentTime = DateTime.local();
-  let endSeconds = currentTime.second + seconds;
-  // When the seconds hit 60 they reset to 0
-  let overFiftyNine = endSeconds > 59 ? endSeconds -= 60 : endSeconds = endSeconds;
+class Timer {
+  constructor(seconds) {
+    this.seconds = seconds;
+    this.currentTime = DateTime.local();
+    this.endSeconds = this.currentTime.second + seconds;
+    this.overFiftyNine = this.endSeconds > 59 ? this.endSeconds -= 60 : this.endSeconds = this.endSeconds;
+  }
 
-  let tick = setInterval(() => {
-    endSeconds -= 1;
-    console.log('00:00:' + endSeconds);
+  run(tickRun) {
+    let ticker = setInterval(() => {
+      this.endSeconds -= 1;
+      this.seconds -= 1;
+      tickRun(this.seconds);
 
-    if(endSeconds === currentTime.second) {
-      clearInterval(tick);
-    }
-  }, 1000)
+      if(this.endSeconds === this.currentTime.second) {
+        clearInterval(ticker);
+      }
+    }, 1000);
+  }
+};
+
+let myTimer = new Timer(5);
+
+function getSeconds(seconds) {
+  console.log(seconds);
 }
 
-timer(6);
+myTimer.run(getSeconds)
