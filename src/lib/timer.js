@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon');
 
-class Timer {
+export default class TimerData {
   constructor(seconds) {
     this.seconds = seconds;
     this.currentTime = DateTime.local();
@@ -21,10 +21,10 @@ class Timer {
   }
 };
 
-let myTimer = new Timer(5);
-
-function getSeconds(seconds) {
-  console.log(seconds);
-}
-
-myTimer.run(getSeconds)
+// let myTimer = new Timer(5);
+//
+// function getSeconds(seconds) {
+//   console.log(seconds);
+// }
+//
+// myTimer.run(getSeconds)
