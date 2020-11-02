@@ -41,3 +41,7 @@
   border-radius: 3px;
   float: right;
 }
+
+.startButton {
+  float: left;
+}

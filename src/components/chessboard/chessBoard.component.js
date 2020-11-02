@@ -1,8 +1,9 @@
-// modules
+
 
 import React, { Component } from 'react';
 import Chessboard from 'chessboardjsx';
-import Container from '@material-ui/core/Container'
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -39,25 +40,37 @@ class ChessBoard extends Component {
 	constructor(props) {
 		super(props);
 		this.handleDifficultyClick = this.handleDifficultyClick.bind(this);
+    this.handleStartClick = this.handleStartClick.bind(this);
 
 		this.state = {
-			currentPosition: "start"
+			currentPosition: "start",
+      queuedPosition: "start",
 		};
 	}
 
 	handleDifficultyClick(difficulty) {
-		let currentPosition;
-		if(this.state.currentPosition === 'start') {
-			currentPosition = genRandPos(difficulty);
-      window.timerComp.startTimer();
+		let queuedPosition;
+		if(this.state.queuedPosition === 'start') {
+			queuedPosition = genRandPos(difficulty);
 		} else {
-			currentPosition = "start";
+			queuedPosition = "start";
 		}
 
 		this.setState({
-			currentPosition: currentPosition,
+			queuedPosition: queuedPosition,
 		})
 	}
+
+  handleStartClick() {
+    let queuedPosition = this.state.queuedPosition;
+
+    this.setState({
+      currentPosition: queuedPosition,
+      queuedPosition: "start",
+    })
+
+    window.timerComp.startTimer();
+  }
 
 	render() {
 		const {classes} = this.props;
@@ -90,6 +103,7 @@ class ChessBoard extends Component {
 				</Grid>
         <Container size="xs" className={classes.timer}>
           <Timer startingSeconds={10}/>
+          <Button variant="contained" color="primary" className="startButton" onClick={this.handleStartClick}>Start</Button>
         </Container>
 			</div>
 		);

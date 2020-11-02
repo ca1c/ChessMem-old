@@ -6,14 +6,12 @@ const genRandNum = function(min, max) {
 	return Math.floor(Math.random() * (max - min) + min);
 }
 
-
-// Number of pieces on the board 
+// Number of pieces on the board
 const difficultyNumbers = {
 	easy: genRandNum(4, 8),
 	medium: genRandNum(8, 16),
 	hard: genRandNum(16, 32),
 };
-
 
 
 const regenerateDifficulties = function () {
@@ -64,7 +62,7 @@ const genRandPos = function(difficulty) {
 		if(getUncapturedPieces().length === pieceNum) {
 			currentFEN = chess.fen();
 		}
-		
+
 	}
 
 	//Possiblity of chess game being over without meeting the piece requirement
@@ -82,5 +80,3 @@ const genRandPos = function(difficulty) {
 }
 
 export default genRandPos;
-
-
