@@ -18,7 +18,7 @@ export default class TimerData {
       if(this.endSeconds === this.currentTime.second) {
         // Reset Timer
         this.seconds = this.originalSeconds;
-        this.endSeconds = this.originalSeconds;
+        this.endSeconds = this.currentTime.second + this.originalSeconds;
         clearInterval(ticker);
       }
     }, 1000);
