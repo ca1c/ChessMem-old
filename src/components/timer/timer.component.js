@@ -16,19 +16,31 @@ export default class Timer extends Component {
 
 		this.state = {
 			seconds: "00",
+			started: false,
 			timerInstance: new TimerData(props.startingSeconds),
 		};
 	}
 
 	changeStateData(seconds) {
+		let started = parseInt(this.state.seconds) === 1 ? false : true;
+
 		this.setState({
 			seconds: seconds,
+			started: started
 		})
+
+		console.log(started);
 	}
 
 	startTimer() {
-		console.log('ran');
-		this.state.timerInstance.run(this.changeStateData);
+		if(this.state.started === false) {
+			this.setState({
+				started: true
+			});
+			this.state.timerInstance.run(this.changeStateData);
+		} else {
+			return;
+		}
 	}
 
 	render() {
