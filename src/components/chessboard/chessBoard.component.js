@@ -69,7 +69,7 @@ class ChessBoard extends Component {
       queuedPosition: "start",
     })
 
-    window.timerComp.startTimer();
+    window.timerComp.startTimer(queuedPosition);
   }
 
 	render() {

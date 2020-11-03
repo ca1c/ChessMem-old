@@ -32,8 +32,8 @@ export default class Timer extends Component {
 		console.log(started);
 	}
 
-	startTimer() {
-		if(this.state.started === false) {
+	startTimer(position) {
+		if(this.state.started === false && position !== "start") {
 			this.setState({
 				started: true
 			});

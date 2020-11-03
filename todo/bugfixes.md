@@ -4,4 +4,4 @@
 - [x] Timer counts to negative value from 0 when clicked a second time
 - [x] Timer continues counting into negatives after reset
 - [x] When timer is clicked while running, the speed doubles
-- [ ] Timer can be started before a position is set
+- [x] Timer can be started before a position is set
