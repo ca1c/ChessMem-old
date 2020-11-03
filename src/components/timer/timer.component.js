@@ -24,8 +24,6 @@ export default class Timer extends Component {
 		this.setState({
 			seconds: seconds,
 		})
-
-		console.log(`seconds: ${this.state.seconds}`);
 	}
 
 	startTimer() {
