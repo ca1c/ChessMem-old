@@ -1,10 +1,13 @@
 ## Features Checklist
-- [ ] Timer: Position is shown for a set amount of time, then board is cleared
+- [x] Timer: Position is shown for a set amount of time, then board is cleared
   - [x] Timer counts down for a set amount of time
   - [x] Timer runs on button click with certain constraints
-  - [ ] Button is disabled until position is set
-  - [ ] Board is cleared when timer hits 0
+  - [x] Button is disabled until position is set
 - [ ] Board position disappears when time runs out and user has to recreate the position, then click the `done` button
+  - [ ] Board is cleared when timer hits 0
+  - [ ] Done button in UI and is functional (submits position as long as there are pieces on the board)
+- [ ] Position correctness confirmation and position reset on incorrect submission
+  - [ ] When position is submitted either confirm position correctness or reject
 - [ ] Settings for time and difficulty constraints
 - [ ] Users
 - [ ] Saving positions

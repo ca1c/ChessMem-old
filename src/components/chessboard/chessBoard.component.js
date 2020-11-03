@@ -45,19 +45,24 @@ class ChessBoard extends Component {
 		this.state = {
 			currentPosition: "start",
       queuedPosition: "start",
+      startDisabled: true,
 		};
 	}
 
 	handleDifficultyClick(difficulty) {
 		let queuedPosition;
+    let startDisabled;
 		if(this.state.queuedPosition === 'start') {
 			queuedPosition = genRandPos(difficulty);
+      startDisabled = false;
 		} else {
 			queuedPosition = "start";
+      startDisabled = true;
 		}
 
 		this.setState({
 			queuedPosition: queuedPosition,
+      startDisabled: startDisabled,
 		})
 	}
 
@@ -103,7 +108,14 @@ class ChessBoard extends Component {
 				</Grid>
         <Container size="xs" className={classes.timer}>
           <Timer startingSeconds={10}/>
-          <Button variant="contained" color="primary" className="startButton" onClick={this.handleStartClick}>Start</Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className="startButton"
+            onClick={this.handleStartClick}
+            disabled={this.state.startDisabled}>
+            Start
+          </Button>
         </Container>
 			</div>
 		);
