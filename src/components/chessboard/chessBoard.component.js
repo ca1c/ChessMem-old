@@ -22,49 +22,49 @@ const styles = theme => ({
     padding: '30px',
   },
   options: {
-  	maxWidth: '300px',
-  	display: 'flex',
-	flexDirection: 'row',
-	padding: 0,
+    maxWidth: '300px',
+    display: 'flex',
+    flexDirection: 'row',
+    padding: 0,
   },
   menuButton: {
-  	textAlign: "center"
+    textAlign: "center"
   },
   timer: {
-      maxWidth: '610px',
+    maxWidth: '610px',
   }
 });
 
 class ChessBoard extends Component {
 
-	constructor(props) {
-		super(props);
-		this.handleDifficultyClick = this.handleDifficultyClick.bind(this);
+  constructor(props) {
+    super(props);
+    this.handleDifficultyClick = this.handleDifficultyClick.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
 
-		this.state = {
-			currentPosition: "start",
+    this.state = {
+      currentPosition: "start",
       queuedPosition: "start",
       startDisabled: true,
-		};
-	}
+    };
+  }
 
-	handleDifficultyClick(difficulty) {
-		let queuedPosition;
+  handleDifficultyClick(difficulty) {
+    let queuedPosition;
     let startDisabled;
-		if(this.state.queuedPosition === 'start') {
-			queuedPosition = genRandPos(difficulty);
+    if(this.state.queuedPosition === 'start') {
+      queuedPosition = genRandPos(difficulty);
       startDisabled = false;
-		} else {
-			queuedPosition = "start";
+    } else {
+      queuedPosition = "start";
       startDisabled = true;
-		}
+    }
 
-		this.setState({
-			queuedPosition: queuedPosition,
+    this.setState({
+      queuedPosition: queuedPosition,
       startDisabled: startDisabled,
-		})
-	}
+    })
+  }
 
   handleStartClick() {
     let queuedPosition = this.state.queuedPosition;
@@ -77,35 +77,35 @@ class ChessBoard extends Component {
     window.timerComp.startTimer(queuedPosition);
   }
 
-	render() {
-		const {classes} = this.props;
+  render() {
+    const {classes} = this.props;
 
-		return (
-			<div className={classes.mainPadding}>
-				<Grid
-					align="center"
-				>
-					<Chessboard
-						position={this.state.currentPosition}
-						sparePieces={true}
-						lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
-  						darkSquareStyle={{ backgroundColor: "#494d54" }}
-  					/>
-  				<Container size="xs">
-  					<List component="nav" ria-label="mailbox folders" className={classes.options}>
-  					  <ListItem button>
-  					    <ListItemText primary="Easy" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 0)}/>
-  					  </ListItem>
-  					  <ListItem button>
-  					    <ListItemText primary="Medium" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 1)}/>
-  					  </ListItem>
-  					  <ListItem button>
-  					    <ListItemText primary="Hard" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 2)}/>
-  					  </ListItem>
-  					  <Divider />
-  					</List>
-					</Container>
-				</Grid>
+    return (
+      <div className={classes.mainPadding}>
+        <Grid
+        align="center"
+        >
+          <Chessboard
+            position={this.state.currentPosition}
+            sparePieces={true}
+            lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
+    			  darkSquareStyle={{ backgroundColor: "#494d54" }}
+    		  />
+    			<Container size="xs">
+    				<List component="nav" ria-label="mailbox folders" className={classes.options}>
+    				  <ListItem button>
+    				    <ListItemText primary="Easy" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 0)}/>
+    				  </ListItem>
+    				  <ListItem button>
+    				    <ListItemText primary="Medium" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 1)}/>
+    				  </ListItem>
+    				  <ListItem button>
+    				    <ListItemText primary="Hard" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 2)}/>
+    				  </ListItem>
+    				  <Divider />
+    				</List>
+          </Container>
+        </Grid>
         <Container size="xs" className={classes.timer}>
           <Timer startingSeconds={10}/>
           <Button
@@ -117,9 +117,9 @@ class ChessBoard extends Component {
             Start
           </Button>
         </Container>
-			</div>
-		);
-	}
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(ChessBoard);
