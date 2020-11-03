@@ -1,5 +1,9 @@
 ## Features Checklist
-
+- [ ] Timer: Position is shown for a set amount of time, then board is cleared
+  - [x] Timer counts down for a set amount of time
+  - [x] Timer runs on button click with certain constraints
+  - [ ] Button is disabled until position is set
+  - [ ] Board is cleared when timer hits 0
 - [ ] Board position disappears when time runs out and user has to recreate the position, then click the `done` button
 - [ ] Settings for time and difficulty constraints
 - [ ] Users
