@@ -88,8 +88,6 @@ const genRandPos = function(difficulty) {
 
   regenerateDifficulties();
 
-  console.log(pieceNum);
-
   return currentPos;
 }
 

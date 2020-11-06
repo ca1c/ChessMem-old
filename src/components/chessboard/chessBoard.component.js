@@ -69,7 +69,6 @@ class ChessBoard extends Component {
     let startDisabled;
     if(this.state.queuedPosition === 'start') {
       queuedPosition = genRandPos(difficulty);
-      console.log(queuedPosition);
       startDisabled = false;
     } else {
       queuedPosition = "start";
@@ -87,8 +86,6 @@ class ChessBoard extends Component {
   }
 
   handleStartClick() {
-
-    console.log(Timer);
     let queuedPosition = this.state.queuedPosition;
 
     this.setState({
@@ -110,8 +107,6 @@ class ChessBoard extends Component {
   }
 
   finish() {
-    console.log(this.state.currentPosition);
-    console.log(this.state.comparePosition);
     console.log(compareObj(this.state.currentPosition, this.state.comparePosition));
   }
 //{this.state.solving === true ? "empty" : this.state.currentPosition}
