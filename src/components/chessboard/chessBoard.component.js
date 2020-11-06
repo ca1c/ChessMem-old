@@ -50,6 +50,7 @@ class ChessBoard extends Component {
       currentPosition: "start",
       queuedPosition: "start",
       startDisabled: true,
+      solving: false,
     };
   }
 
@@ -85,9 +86,13 @@ class ChessBoard extends Component {
   clearBoard() {
     window.boardComp.setState({
       currentPosition: "empty",
+      startDisabled: true,
+      solving: true,
     })
-  }
 
+    console.log(this.state.currentPosition === "empty" ? "empty" : "state");
+  }
+//{this.state.solving === true ? "empty" : this.state.currentPosition}
   render() {
     const {classes} = this.props;
 
@@ -98,6 +103,7 @@ class ChessBoard extends Component {
         >
           <Chessboard
             position={this.state.currentPosition}
+            getPosition={position => this.setState({ currentPosition: position })}
             sparePieces={true}
             lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
     			  darkSquareStyle={{ backgroundColor: "#494d54" }}
