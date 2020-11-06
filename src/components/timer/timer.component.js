@@ -29,7 +29,9 @@ export default class Timer extends Component {
       started: started
     })
 
-    console.log(started);
+    if(this.state.started == false) {
+      window.boardComp.clearBoard();
+    }
   }
 
   startTimer(position) {

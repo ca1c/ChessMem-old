@@ -39,8 +39,12 @@ class ChessBoard extends Component {
 
   constructor(props) {
     super(props);
+
+    window.boardComp = this;
+
     this.handleDifficultyClick = this.handleDifficultyClick.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
+    this.clearBoard = this.clearBoard.bind(this);
 
     this.state = {
       currentPosition: "start",
@@ -67,6 +71,7 @@ class ChessBoard extends Component {
   }
 
   handleStartClick() {
+    console.log(Timer);
     let queuedPosition = this.state.queuedPosition;
 
     this.setState({
@@ -75,6 +80,12 @@ class ChessBoard extends Component {
     })
 
     window.timerComp.startTimer(queuedPosition);
+  }
+
+  clearBoard() {
+    window.boardComp.setState({
+      currentPosition: "empty",
+    })
   }
 
   render() {
