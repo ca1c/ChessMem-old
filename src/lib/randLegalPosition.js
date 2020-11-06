@@ -28,21 +28,32 @@ const getUncapturedPieces = function() {
 
   for(let i = 0; i < boardColumns.length; i++) {
     for(let j = 0; j < boardRanks.length; j++) {
-      pieces.push(chess.get(boardColumns[i] + boardRanks[j]));
+      pieces.push({[boardColumns[i] + boardRanks[j]]: chess.get(boardColumns[i] + boardRanks[j])});
     }
   }
 
   // remove all of the squares that dont have a piece on them
-  pieces = pieces.filter(square => square !== null);
+  pieces = pieces.filter(square => square[Object.keys(square)[0]] !== null);
 
-  return pieces;
+  //would look something like: { c4: "wQ", e3: "wR", g3: "wN", f4: "wP" }
+
+  let piecesObj = {}
+
+  for(let i = 0; i < pieces.length; i++) {
+    let piece = pieces[i];
+    piecesObj[Object.keys(piece)[0]] = piece[Object.keys(piece)[0]].color + piece[Object.keys(piece)[0]].type.toUpperCase();
+  }
+
+
+  return piecesObj;
 }
 
 const genRandPos = function(difficulty) {
   // difficulty is either a 0, 1, 2 (easy, medium, hard)
 
-  let currentFEN = "";
+  let currentPos = "";
   let pieceNum = 0;
+  let uncapturedPieces;
 
   if(difficulty === 0) {
     pieceNum = difficultyNumbers.easy;
@@ -58,16 +69,19 @@ const genRandPos = function(difficulty) {
     chess.move(move);
 
     // console.log(chess.pgn());
+    uncapturedPieces = getUncapturedPieces();
 
-    if(getUncapturedPieces().length === pieceNum) {
-      currentFEN = chess.fen();
+    let uPLength = Object.getOwnPropertyNames(uncapturedPieces);
+
+    if(uPLength.length === pieceNum) {
+      currentPos = uncapturedPieces;
     }
 
   }
 
   //Possiblity of chess game being over without meeting the piece requirement
-  if(chess.game_over() && currentFEN === "") {
-    currentFEN = chess.fen();
+  if(chess.game_over() && currentPos === "") {
+    currentPos = uncapturedPieces;
   }
 
   chess.reset();
@@ -76,7 +90,7 @@ const genRandPos = function(difficulty) {
 
   console.log(pieceNum);
 
-  return currentFEN;
+  return currentPos;
 }
 
 export default genRandPos;

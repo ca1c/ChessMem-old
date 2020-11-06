@@ -45,3 +45,8 @@
 .startButton {
   float: left;
 }
+
+.finishButton {
+  margin-left: 20px;
+  float: none;
+}

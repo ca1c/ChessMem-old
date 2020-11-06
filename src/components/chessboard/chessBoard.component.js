@@ -9,10 +9,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 // Utility javascript
 import genRandPos from './../../lib/randLegalPosition.js';
+import compareObj from './../../lib/util/compareObj.js';
 
 // Custom components
 import Timer from "./../timer/timer.component";
@@ -32,9 +34,14 @@ const styles = theme => ({
   },
   timer: {
     maxWidth: '610px',
+    marginTop: '20px',
+  },
+  finish: {
+    maxWidth: '610px',
+    margin: '20px',
   }
 });
-
+//
 class ChessBoard extends Component {
 
   constructor(props) {
@@ -45,11 +52,14 @@ class ChessBoard extends Component {
     this.handleDifficultyClick = this.handleDifficultyClick.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
     this.clearBoard = this.clearBoard.bind(this);
+    this.finish = this.finish.bind(this);
 
     this.state = {
       currentPosition: "start",
       queuedPosition: "start",
+      comparePosition: "",
       startDisabled: true,
+      finishDisabled: true,
       solving: false,
     };
   }
@@ -59,24 +69,31 @@ class ChessBoard extends Component {
     let startDisabled;
     if(this.state.queuedPosition === 'start') {
       queuedPosition = genRandPos(difficulty);
+      console.log(queuedPosition);
       startDisabled = false;
     } else {
       queuedPosition = "start";
       startDisabled = true;
     }
 
+
     this.setState({
       queuedPosition: queuedPosition,
       startDisabled: startDisabled,
+      comparePosition: "",
     })
+
+
   }
 
   handleStartClick() {
+
     console.log(Timer);
     let queuedPosition = this.state.queuedPosition;
 
     this.setState({
       currentPosition: queuedPosition,
+      comparePosition: queuedPosition,
       queuedPosition: "start",
     })
 
@@ -87,10 +104,15 @@ class ChessBoard extends Component {
     window.boardComp.setState({
       currentPosition: "empty",
       startDisabled: true,
+      finishDisabled: false,
       solving: true,
     })
+  }
 
-    console.log(this.state.currentPosition === "empty" ? "empty" : "state");
+  finish() {
+    console.log(this.state.currentPosition);
+    console.log(this.state.comparePosition);
+    console.log(compareObj(this.state.currentPosition, this.state.comparePosition));
   }
 //{this.state.solving === true ? "empty" : this.state.currentPosition}
   render() {
@@ -132,6 +154,18 @@ class ChessBoard extends Component {
             onClick={this.handleStartClick}
             disabled={this.state.startDisabled}>
             Start
+          </Button>
+        </Container>
+        <Container size="xs" className={classes.timer}>
+          <Button
+            variant="contained"
+            color="primary"
+            className="finishButton"
+            onClick={this.finish}
+            disabled={this.state.finishDisabled}>
+            <Typography variant="p" align="left">
+              Finish
+            </Typography>
           </Button>
         </Container>
       </div>
