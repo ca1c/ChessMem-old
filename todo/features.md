@@ -3,11 +3,12 @@
   - [x] Timer counts down for a set amount of time
   - [x] Timer runs on button click with certain constraints
   - [x] Button is disabled until position is set
-- [ ] Board position disappears when time runs out and user has to recreate the position, then click the `done` button
+- [x] Board position disappears when time runs out and user has to recreate the position, then click the `finish` button
   - [x] Board is cleared when timer hits 0
-  - [ ] Done button in UI and is functional (submits position as long as there are pieces on the board)
+  - [x] `finish` button in UI and is functional (submits position as long as there are pieces on the board)
 - [ ] Position correctness confirmation and position reset on incorrect submission
-  - [ ] When position is submitted either confirm position correctness or reject
+  - [x] When position is submitted either confirm position correctness or reject
+  - [ ] Positon correctness confirmation or rejection UI
 - [ ] Settings for time and difficulty constraints
 - [ ] Users
 - [ ] Saving positions
