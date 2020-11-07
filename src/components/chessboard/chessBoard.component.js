@@ -61,28 +61,32 @@ class ChessBoard extends Component {
       startDisabled: true,
       finishDisabled: true,
       solving: false,
+      difficultyButtonDisabled: false,
     };
   }
 
   handleDifficultyClick(difficulty) {
-    let queuedPosition;
-    let startDisabled;
-    if(this.state.queuedPosition === 'start') {
-      queuedPosition = genRandPos(difficulty);
-      startDisabled = false;
-    } else {
-      queuedPosition = "start";
-      startDisabled = true;
+    if(this.state.difficultyButtonDisabled === false){
+      let queuedPosition;
+      let startDisabled;
+      let difficultyButtonDisabled;
+      if(this.state.queuedPosition === 'start') {
+        queuedPosition = genRandPos(difficulty);
+        startDisabled = false;
+        difficultyButtonDisabled = true;
+      } else {
+        queuedPosition = "start";
+        startDisabled = true;
+      }
+
+
+      this.setState({
+        queuedPosition: queuedPosition,
+        startDisabled: startDisabled,
+        comparePosition: "",
+        difficultyButtonDisabled: difficultyButtonDisabled,
+      })
     }
-
-
-    this.setState({
-      queuedPosition: queuedPosition,
-      startDisabled: startDisabled,
-      comparePosition: "",
-    })
-
-
   }
 
   handleStartClick() {
@@ -92,8 +96,9 @@ class ChessBoard extends Component {
       currentPosition: queuedPosition,
       comparePosition: queuedPosition,
       queuedPosition: "start",
+      startDisabled: "true",
     })
-
+    console.log(queuedPosition);
     window.timerComp.startTimer(queuedPosition);
   }
 
@@ -107,7 +112,21 @@ class ChessBoard extends Component {
   }
 
   finish() {
-    console.log(compareObj(this.state.currentPosition, this.state.comparePosition));
+    let same = compareObj(this.state.currentPosition, this.state.comparePosition);
+    console.log(same);
+    if(same) {
+      this.setState({
+        currentPosition: "start",
+        queuedPosition: "start",
+        comparePosition: "",
+        startDisabled: true,
+        finishDisabled: true,
+        solving: false,
+        difficultyButtonDisabled: false,
+      });
+    } else {
+      return;
+    }
   }
 //{this.state.solving === true ? "empty" : this.state.currentPosition}
   render() {
