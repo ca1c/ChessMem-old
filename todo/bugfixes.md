@@ -6,5 +6,5 @@
 - [x] When timer is clicked while running, the speed doubles
 - [x] Timer can be started before a position is set
 
-- [ ] Position can be changed while recreating position
+- [x] Position can be changed while recreating position
 - [ ] Position can be changed by re-clicking the position button after position has been set (need a reset button)
