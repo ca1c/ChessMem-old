@@ -96,7 +96,7 @@ class ChessBoard extends Component {
       currentPosition: queuedPosition,
       comparePosition: queuedPosition,
       queuedPosition: "start",
-      startDisabled: "true",
+      startDisabled: true,
     })
     console.log(queuedPosition);
     window.timerComp.startTimer(queuedPosition);
