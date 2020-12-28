@@ -4820,7 +4820,7 @@
   "resolved" "https://registry.npmjs.org/eventemitter3/-/eventemitter3-4.0.7.tgz"
   "version" "4.0.7"
 
-"events@^3.0.0":
+"events@^3.0.0", "events@^3.2.0":
   "integrity" "sha512-/46HWwbfCX2xTawVfkKLGxMifJYQBWMwY1mjywRtb4c9x8l5NP3KoJtnIOiL1hfdRkIuYhETxQlo62IF8tcnlg=="
   "resolved" "https://registry.npmjs.org/events/-/events-3.2.0.tgz"
   "version" "3.2.0"
@@ -11191,6 +11191,13 @@
   "integrity" "sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q="
   "resolved" "https://registry.npmjs.org/timsort/-/timsort-0.3.0.tgz"
   "version" "0.3.0"
+
+"tiny-timer@^1.5.1":
+  "integrity" "sha512-ywW06n0cPSiCIdQTDCBMmdK2Jw1Io8f8n6OJQyNv6GpOoLJjJdWCRWwIaedukc7B+oPPEBd8qmq+175tnl7TWA=="
+  "resolved" "https://registry.npmjs.org/tiny-timer/-/tiny-timer-1.5.1.tgz"
+  "version" "1.5.1"
+  dependencies:
+    "events" "^3.2.0"
 
 "tiny-warning@^1.0.2":
   "integrity" "sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA=="

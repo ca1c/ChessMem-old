@@ -17,7 +17,7 @@ import genRandPos from './../../lib/randLegalPosition.js';
 import compareObj from './../../lib/util/compareObj.js';
 
 // Custom components
-import Timer from "./../timer/timer.component";
+import TimerComp from "./../timer/timer.component";
 
 const styles = theme => ({
   mainPadding: {
@@ -161,7 +161,7 @@ class ChessBoard extends Component {
           </Container>
         </Grid>
         <Container size="xs" className={classes.timer}>
-          <Timer startingSeconds={10}/>
+          <TimerComp startingSeconds={10}/>
           <Button
             variant="contained"
             color="primary"
