@@ -66,6 +66,7 @@ class ChessBoard extends Component {
   }
 
   handleDifficultyClick(difficulty) {
+    console.log(this.state.difficultyButtonDisabled);
     if(this.state.difficultyButtonDisabled === false){
       let queuedPosition;
       let startDisabled;
@@ -146,14 +147,14 @@ class ChessBoard extends Component {
     		  />
     			<Container size="xs">
     				<List component="nav" ria-label="mailbox folders" className={classes.options}>
-    				  <ListItem button>
-    				    <ListItemText primary="Easy" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 0)}/>
+    				  <ListItem>
+    				    <Button className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 0)}>Easy</Button>
     				  </ListItem>
-    				  <ListItem button>
-    				    <ListItemText primary="Medium" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 1)}/>
+    				  <ListItem>
+    				    <Button className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 1)}>Medium</Button>
     				  </ListItem>
-    				  <ListItem button>
-    				    <ListItemText primary="Hard" className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 2)}/>
+    				  <ListItem>
+    				    <Button className={classes.menuButton} onClick={this.handleDifficultyClick.bind(this, 2)}>Hard</Button>
     				  </ListItem>
     				  <Divider />
     				</List>
