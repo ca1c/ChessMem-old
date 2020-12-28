@@ -11,7 +11,7 @@ function keyNum(k1, k2) {
 */
 
 function changeOrder(o1, o2) {
-  /* This will check that all keys are equal or exist also
+  /* This will check that all keys are equal and exist also
    * The first object's keys will look like this in array form: [a, b, c, d]
    * The next object's keys will probably be out of order relative to the first object's keys: [b, d, a, c]
    * The iterator will start on the first key of the first array and find it in the second, and create a new object in order
@@ -31,7 +31,7 @@ function changeOrder(o1, o2) {
    * 
    */
 
-  let newObj = new Object();
+  let newObj = {};
   let equal = false;
   
   let baseObjKeys = Object.keys(o1);
@@ -44,9 +44,9 @@ function changeOrder(o1, o2) {
   for(let i = 0; i < baseObjKeys.length; i++) {
     if(typeof o2[baseObjKeys[i]] === 'undefined') {
       return returnObj;
-    } else {
-      newObj[baseObjKeys[i]] = o2[baseObjKeys[i]];
     }
+
+    newObj[baseObjKeys[i]] = o2[baseObjKeys[i]];
   }
 
   equal = true;
@@ -55,22 +55,8 @@ function changeOrder(o1, o2) {
     newObj: newObj,
     equal: equal
   }
-  
+
   return returnObj;
-}
-
-/*
-  Step 2: Check if all the keys are equal
-*/
-
-function keyEqu(k1, k2) {
-  for(let i = 0; i < k1.length; i++) {
-    if(k1[i] !== k2[i]) {
-      return false;
-    }
-  }
-
-  return true;
 }
 
 /*
@@ -79,7 +65,8 @@ function keyEqu(k1, k2) {
 
 function valEqu(o1, o2, k1) {
   for(let i = 0; i < k1.length; i++) {
-    if(o1[k1[i]] !== o1[k1[i]]) {
+    if(o1[k1[i]] !== o2[k1[i]]) {
+      console.log('ran');
       return false;
     }
   }
@@ -91,7 +78,7 @@ function valEqu(o1, o2, k1) {
   If all of these checks pass, the objects are equal.
 */
 
-export default function comapreObj (o1, o2) {
+export default function compareObj (o1, o2) {
   let k1 = Object.getOwnPropertyNames(o1);
   let k2 = Object.getOwnPropertyNames(o2);
 
