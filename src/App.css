@@ -42,6 +42,14 @@
   float: right;
 }
 
+.settingsIcon {
+  float: right;
+  padding: 4px;
+}
+.settingsIcon:hover {
+  color: #8e9094;
+}
+
 .startButton {
   float: left;
 }

@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import Chessboard from 'chessboardjsx';
 import Container from '@material-ui/core/Container';
@@ -18,6 +16,7 @@ import compareObj from './../../lib/util/compareObj.js';
 
 // Custom components
 import TimerComp from "./../timer/timer.component";
+import SettingsModal from "./../settingsModal/settingsModal.component";
 
 const styles = theme => ({
   mainPadding: {
@@ -53,6 +52,7 @@ class ChessBoard extends Component {
     this.handleStartClick = this.handleStartClick.bind(this);
     this.clearBoard = this.clearBoard.bind(this);
     this.finish = this.finish.bind(this);
+    this.openSettings = this.openSettings.bind(this);
 
     this.state = {
       currentPosition: "start",
@@ -140,6 +140,11 @@ class ChessBoard extends Component {
       return;
     }
   }
+
+  openSettings() {
+    window.openSettings();
+  }
+
 //{this.state.solving === true ? "empty" : this.state.currentPosition}
   render() {
     const {classes} = this.props;
@@ -173,6 +178,7 @@ class ChessBoard extends Component {
           </Container>
         </Grid>
         <Container size="xs" className={classes.timer}>
+          <i className="fas fa-cog settingsIcon" onClick={this.openSettings}></i>
           <TimerComp startingSeconds={10}/>
           <Button
             variant="contained"
@@ -195,6 +201,7 @@ class ChessBoard extends Component {
           <Typography className={this.state.correctVisible}>
               {this.state.correct === true ? "Correct!" : "Incorrect, try something else."}
           </Typography>
+          <SettingsModal />
         </Container>
       </div>
     );
