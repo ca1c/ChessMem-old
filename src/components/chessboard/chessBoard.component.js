@@ -53,6 +53,8 @@ class ChessBoard extends Component {
     this.clearBoard = this.clearBoard.bind(this);
     this.finish = this.finish.bind(this);
     this.openSettings = this.openSettings.bind(this);
+    this.pauseTimeT = this.pauseTimeT.bind(this);
+    this.stopTime = this.stopTime.bind(this);
 
     this.state = {
       currentPosition: "start",
@@ -64,6 +66,7 @@ class ChessBoard extends Component {
       difficultyButtonDisabled: false,
       correct: false,
       correctVisible: "correctHidden",
+      timePaused: false,
     };
   }
 
@@ -145,6 +148,26 @@ class ChessBoard extends Component {
     window.openSettings();
   }
 
+  pauseTimeT() {
+    if(this.state.timePaused === false) {
+      window.timerComp.pauseTime();
+
+      this.setState({
+        timePaused: true,
+      })
+    } else {
+      window.timerComp.resumeTime();
+
+      this.setState({
+        timePaused: false,
+      })
+    }
+  }
+
+  stopTime() {
+    window.timerComp.stopTimer();
+  }
+
 //{this.state.solving === true ? "empty" : this.state.currentPosition}
   render() {
     const {classes} = this.props;
@@ -179,6 +202,10 @@ class ChessBoard extends Component {
         </Grid>
         <Container size="xs" className={classes.timer}>
           <i className="fas fa-cog settingsIcon" onClick={this.openSettings}></i>
+          <div onClick={this.pauseTimeT}>
+            {this.state.timePaused === true ? <i className="fas fa-play playIcon"></i> : <i className="fas fa-pause pauseIcon"></i>}
+          </div>
+          <i class="fas fa-times stopIcon" onClick={this.stopTime}></i>
           <TimerComp startingSeconds={10}/>
           <Button
             variant="contained"

@@ -11,30 +11,61 @@ export default class TimerComp extends Component {
 
         this.state = {
             seconds: "10",
+            oSeconds: "10",
             started: false,
+            timer: new Timer(),
         }
     }
 
+    pauseTime() {
+        this.state.timer.pause();
+
+        this.setState({
+            started: false,
+        });
+    }
+
+    resumeTime() {
+        this.state.timer.resume();
+
+        this.setState({
+            started: true,
+        });
+    }
+
+    stopTimer() {
+        this.state.timer.stop();
+
+        let oSeconds = this.state.oSeconds;
+
+        this.setState({
+            seconds: oSeconds,
+            started: false,
+        });
+    }
+
     startTimer(position) {
-        const timer = new Timer();
+
 
         if(this.state.started === false && position !== "start") {
             this.setState({
                 started: true
             });
             
-            timer.start(parseInt(this.state.seconds) * 1000);
+            this.state.timer.start(parseInt(this.state.seconds) * 1000);
 
-            timer.on('tick', (ms) => {
+            this.state.timer.on('tick', (ms) => {
                 this.setState({
                     seconds: Math.round(ms/1000),
                     started: true,
                 })
             })
 
-            timer.on('done', () => {
+            this.state.timer.on('done', () => {
+                let oSeconds = this.state.oSeconds;
+
                 this.setState({
-                    seconds: "00",
+                    seconds: oSeconds,
                     started: false
                 })
                 window.boardComp.clearBoard();
@@ -44,7 +75,8 @@ export default class TimerComp extends Component {
 
     setTime(seconds) {
         this.setState({
-            seconds: seconds
+            seconds: seconds,
+            oSeconds: seconds
         });
     }
 
