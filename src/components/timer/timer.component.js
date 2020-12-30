@@ -10,7 +10,7 @@ export default class TimerComp extends Component {
         window.timerComp = this;
 
         this.state = {
-            seconds: "",
+            seconds: "10",
             started: false,
         }
     }
@@ -23,7 +23,7 @@ export default class TimerComp extends Component {
                 started: true
             });
             
-            timer.start(10000);
+            timer.start(parseInt(this.state.seconds) * 1000);
 
             timer.on('tick', (ms) => {
                 this.setState({
@@ -34,7 +34,7 @@ export default class TimerComp extends Component {
 
             timer.on('done', () => {
                 this.setState({
-                    seconds: "0",
+                    seconds: "00",
                     started: false
                 })
                 window.boardComp.clearBoard();
@@ -42,10 +42,16 @@ export default class TimerComp extends Component {
         }
     }
 
+    setTime(seconds) {
+        this.setState({
+            seconds: seconds
+        });
+    }
+
     render() {
         return (
             <div>
-              <Typography variant="p" color="textSecondary" className="timerComp">00:00:{this.state.seconds}</Typography>
+              <Typography variant="p" color="textSecondary" className="timerComp">::{this.state.seconds}</Typography>
             </div>
         );
     }

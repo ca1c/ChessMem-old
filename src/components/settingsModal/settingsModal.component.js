@@ -1,14 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
 }
 
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
   
     return {
       top: `${top}%`,
@@ -32,7 +34,8 @@ export default function SettingsModal() {
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
     const[open, setOpen] = React.useState(false);
-    
+    let time = React.createRef();
+
     const handleOpen = () => {
         setOpen(true);
     }
@@ -41,14 +44,21 @@ export default function SettingsModal() {
         setOpen(false);
     }
 
+    const setTime = () => {
+        console.log(time.current.value);
+        window.timerComp.setTime(time.current.value);
+    }
+
     window.openSettings = handleOpen;
 
     const body = (
-        <div style={modalStyle} className = {classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
+        <div style={modalStyle} className={classes.paper}>
+            <h2 id="simple-modal-title">Time Settings</h2>
             <p id="simple-modal-description">
-                Epic and cool text
+                Time (s):
             </p>
+            <Input placeholder="00" inputRef={time}></Input>
+            <Button onClick={setTime}>Set</Button>
             <SettingsModal />
         </div>
     );
