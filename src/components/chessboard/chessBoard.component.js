@@ -62,6 +62,8 @@ class ChessBoard extends Component {
       finishDisabled: true,
       solving: false,
       difficultyButtonDisabled: false,
+      correct: false,
+      correctVisible: "correctHidden",
     };
   }
 
@@ -94,10 +96,13 @@ class ChessBoard extends Component {
     let queuedPosition = this.state.queuedPosition;
 
     this.setState({
+      correctVisible: "correctHidden",
+      correct: false,
       currentPosition: queuedPosition,
       comparePosition: queuedPosition,
       queuedPosition: "start",
       startDisabled: true,
+
     })
     console.log(queuedPosition);
     window.timerComp.startTimer(queuedPosition);
@@ -124,8 +129,14 @@ class ChessBoard extends Component {
         finishDisabled: true,
         solving: false,
         difficultyButtonDisabled: false,
+        correct: true,
+        correctVisible: "correctShown"
       });
     } else {
+      this.setState({
+        correct: false,
+        correctVisible: "correctShown",
+      })
       return;
     }
   }
@@ -143,7 +154,8 @@ class ChessBoard extends Component {
             getPosition={position => this.setState({ currentPosition: position })}
             sparePieces={true}
             lightSquareStyle={{ backgroundColor: "#dbdbdb" }}
-    			  darkSquareStyle={{ backgroundColor: "#494d54" }}
+            darkSquareStyle={{ backgroundColor: "#494d54" }}
+            width={450}
     		  />
     			<Container size="xs">
     				<List component="nav" ria-label="mailbox folders" className={classes.options}>
@@ -170,8 +182,6 @@ class ChessBoard extends Component {
             disabled={this.state.startDisabled}>
             Start
           </Button>
-        </Container>
-        <Container size="xs" className={classes.timer}>
           <Button
             variant="contained"
             color="primary"
@@ -182,6 +192,9 @@ class ChessBoard extends Component {
               Finish
             </Typography>
           </Button>
+          <Typography className={this.state.correctVisible}>
+              {this.state.correct === true ? "Correct!" : "Incorrect, try something else."}
+          </Typography>
         </Container>
       </div>
     );

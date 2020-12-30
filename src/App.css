@@ -50,3 +50,11 @@
   margin-left: 20px;
   float: none;
 }
+
+.correctHidden {
+  display: none;
+}
+
+.correctShown {
+  display: block;
+}
