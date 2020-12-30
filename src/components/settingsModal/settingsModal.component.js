@@ -2,6 +2,21 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 
+function rand() {
+    return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+  
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         position: 'absolute',
@@ -15,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SettingsModal() {
     const classes = useStyles();
+    const [modalStyle] = React.useState(getModalStyle);
     const[open, setOpen] = React.useState(false);
     
     const handleOpen = () => {
@@ -28,7 +44,7 @@ export default function SettingsModal() {
     window.openSettings = handleOpen;
 
     const body = (
-        <div className = {classes.paper}>
+        <div style={modalStyle} className = {classes.paper}>
             <h2 id="simple-modal-title">Text in a modal</h2>
             <p id="simple-modal-description">
                 Epic and cool text
