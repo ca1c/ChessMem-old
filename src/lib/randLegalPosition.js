@@ -31,6 +31,7 @@ const getUncapturedPieces = function() {
       pieces.push({[boardColumns[i] + boardRanks[j]]: chess.get(boardColumns[i] + boardRanks[j])});
     }
   }
+  
 
   // remove all of the squares that dont have a piece on them
   pieces = pieces.filter(square => square[Object.keys(square)[0]] !== null);

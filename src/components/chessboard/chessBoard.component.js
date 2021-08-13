@@ -106,12 +106,13 @@ class ChessBoard extends Component {
       queuedPosition: "start",
       startDisabled: true,
 
-    })
-    console.log(queuedPosition);
+    });
+    console.log(this.state.queuedPosition);
     window.timerComp.startTimer(queuedPosition);
   }
 
   clearBoard() {
+    console.log(this.state.currentPosition);
     window.boardComp.setState({
       currentPosition: "empty",
       startDisabled: true,
