@@ -1,6 +1,6 @@
-const Chess = require('chess.js');
+import { Chess } from 'chess.js';
 // console.log(Chess.Chess);
-const chess = Chess();
+const chess = new Chess();
 
 const genRandNum = function(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -31,7 +31,7 @@ const getUncapturedPieces = function() {
       pieces.push({[boardColumns[i] + boardRanks[j]]: chess.get(boardColumns[i] + boardRanks[j])});
     }
   }
-  
+
 
   // remove all of the squares that dont have a piece on them
   pieces = pieces.filter(square => square[Object.keys(square)[0]] !== null);

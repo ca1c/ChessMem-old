@@ -236,4 +236,4 @@ class ChessBoard extends Component {
   }
 }
 
-export default withStyles(styles)(ChessBoard);
+export default ChessBoard;
