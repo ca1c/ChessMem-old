@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 import Timer from 'tiny-timer';
 
@@ -51,7 +51,7 @@ export default class TimerComp extends Component {
             this.setState({
                 started: true
             });
-            
+
             this.state.timer.start(parseInt(this.state.seconds) * 1000);
 
             this.state.timer.on('tick', (ms) => {

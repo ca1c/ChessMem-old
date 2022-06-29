@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@mui/material/styles';
+import Modal from '@mui/material/Modal';
+import Input from '@mui/material/Input';
+import Button from '@mui/material/Button';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -11,7 +11,7 @@ function rand() {
 function getModalStyle() {
     const top = 50;
     const left = 50;
-  
+
     return {
       top: `${top}%`,
       left: `${left}%`,
@@ -76,15 +76,3 @@ export default function SettingsModal() {
         </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-

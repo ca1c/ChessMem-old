@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Chessboard from 'chessboardjsx';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import { withStyles } from '@mui/material/styles';
 
 // Utility javascript
 import genRandPos from './../../lib/randLegalPosition.js';
